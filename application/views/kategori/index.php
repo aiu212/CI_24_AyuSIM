@@ -2,7 +2,8 @@
 <h2 class="h3 mb-4 text-gray-800">Data Kategori</h2>
 
 <a href="<?= site_url('kategori/tambah'); ?>" class="btn btn-primary mb-3">
-    <i class="fas fa-plus"></i>Tambah</a>
+    <i class="fas fa-plus"></i> Tambah
+</a>
 
     <div class="card shadow mb-4">
         <div class="card-body">
