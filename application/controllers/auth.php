@@ -6,10 +6,6 @@ class auth extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Kategori_model');
-        if (!$this->session->userdata('login')){
-            redirect('login');
-        }
         $this->load->model('auth_model');
     }
 
@@ -23,19 +19,19 @@ class auth extends CI_Controller{
         $username= $this->input->post('username');
         $password= $this->input->post('password');
 
-        $user= $this->auth_model->cek_login($username, $password);
+        $users= $this->auth_model->cek_login($username, $password);
 
-        if($user){
+        if($users){
             $data=[
-                'id_user'=> $user->id,
-                'username'=> $user->username,
-                'role'=> $user->role,
+                'id_user'=> $users->id,
+                'username'=> $users->username,
+                'role'=> $users->role,
                 'login'=> TRUE
             ];
 
             $this->session->set_userdata($data);
 
-            $this->auth_model->update_last_login($user->id);
+            $this->auth_model->update_last_login($users->id);
             redirect('dashboard');
         }else{
             $this->session->set_flashdata('error', 'Username dan password salah');
@@ -44,7 +40,7 @@ class auth extends CI_Controller{
     }
     public function logout()
     {
-        $this->session->sess_destory();
+        $this->session->sess_destroy();
         redirect('login');
     }
 }
