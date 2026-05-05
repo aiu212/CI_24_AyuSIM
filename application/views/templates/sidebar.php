@@ -32,6 +32,20 @@
     </a>
 </li>
 
+<li class="nav-item <?= ($this->uri->segment(1) == 'anggota') ? 'active' : '' ?> mx-2 my-1">
+        <a class="nav-link rounded-lg px-3 transition-all" href="<?= site_url('anggota'); ?>">
+            <i class="fas fa-fw fa-user mr-2"></i>
+            <span class="font-weight-600">Anggota</span>
+        </a>
+    </li>
+
+<li class="nav-item <?= ($this->uri->segment(1) == 'peminjaman') ? 'active' : '' ?> mx-2 my-1">
+        <a class="nav-link rounded-lg px-3 transition-all" href="<?= site_url('peminjaman'); ?>">
+            <i class="fas fa-fw fa-user mr-2"></i>
+            <span class="font-weight-600">Peminjaman</span>
+        </a>
+    </li>
+
 </ul>
 
 <div id="content-wrapper" class="d-flex flex-column">
