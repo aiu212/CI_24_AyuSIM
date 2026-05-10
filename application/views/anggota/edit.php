@@ -1,70 +1,92 @@
 <div class="container-fluid">
-    <h2 class="h3 mb-4 text-gray-800">Edit Buku</h2>
+    <h2 class="h3 mb-4 text-gray-800">Edit Anggota</h2>
 
     <div class="card shadow">
         <div class="card-body">
 
-            <form method="post" action="<?= site_url('buku/update/'.$buku->kode_buku); ?>">
+            <form method="post" action="<?= site_url('anggota/update/'.$anggota->id); ?>">
 
-                <!-- Judul -->
+                <!-- Nomor Anggota -->
                 <div class="form-group mb-3">
-                    <label>Judul Buku</label>
-                    <input type="text" name="judul" class="form-control" 
-                           value="<?= $buku->judul; ?>" required>
+                    <label>Nomor Anggota</label>
+                    <input type="text" 
+                           name="nomor_anggota" 
+                           class="form-control"
+                           value="<?= $anggota->nomor_anggota; ?>" 
+                           required>
                 </div>
 
-                <!-- Penulis -->
+                <!-- Nama -->
                 <div class="form-group mb-3">
-                    <label>Penulis</label>
-                    <input type="text" name="penulis" class="form-control" 
-                           value="<?= $buku->penulis; ?>" required>
+                    <label>Nama</label>
+                    <input type="text" 
+                           name="nama" 
+                           class="form-control"
+                           value="<?= $anggota->nama; ?>" 
+                           required>
                 </div>
 
-                <!-- Penerbit -->
+                <!-- Alamat -->
                 <div class="form-group mb-3">
-                    <label>Penerbit</label>
-                    <input type="text" name="penerbit" class="form-control" 
-                           value="<?= $buku->penerbit; ?>" required>
+                    <label>Alamat</label>
+                    <textarea name="alamat" 
+                              class="form-control" 
+                              required><?= $anggota->alamat; ?></textarea>
                 </div>
 
-                <!-- Tahun -->
+                <!-- Telepon -->
                 <div class="form-group mb-3">
-                    <label>Tahun</label>
-                    <input type="date" name="tahun" class="form-control" 
-                           value="<?= $buku->tahun; ?>" required>
+                    <label>Telepon</label>
+                    <input type="text" 
+                           name="telepon" 
+                           class="form-control"
+                           value="<?= $anggota->telepon; ?>" 
+                           required>
                 </div>
 
-                <!-- Kategori -->
+                <!-- Email -->
                 <div class="form-group mb-3">
-                    <label>Kategori</label>
-                    <select name="kategori" class="form-control" required>
-                        <option value="">-- Pilih Kategori --</option>
-                        <?php foreach ($kategori as $k) : ?>
-                            <option value="<?= $k->id; ?>" 
-                                <?= ($k->id == $buku->kategori) ? 'selected' : ''; ?>>
-                                <?= $k->nama_kategori; ?>
-                            </option>
-                        <?php endforeach; ?>
+                    <label>Email</label>
+                    <input type="email" 
+                           name="email" 
+                           class="form-control"
+                           value="<?= $anggota->email; ?>" 
+                           required>
+                </div>
+
+                <!-- Tanggal Daftar -->
+                <div class="form-group mb-3">
+                    <label>Tanggal Daftar</label>
+                    <input type="date" 
+                           name="tanggal_daftar" 
+                           class="form-control"
+                           value="<?= $anggota->tanggal_daftar; ?>" 
+                           required>
+                </div>
+
+                <!-- Status -->
+                <div class="form-group mb-3">
+                    <label>Status</label>
+                    <select name="status" class="form-control" required>
+                        <option value="aktif" <?= ($anggota->status == 'aktif') ? 'selected' : ''; ?>>
+                            Aktif
+                        </option>
+
+                        <option value="nonaktif" <?= ($anggota->status == 'nonaktif') ? 'selected' : ''; ?>>
+                            Nonaktif
+                        </option>
                     </select>
                 </div>
 
-                <!-- Stok -->
-                <div class="form-group mb-3">
-                    <label>Stok</label>
-                    <input type="number" name="stok" class="form-control" 
-                           value="<?= $buku->stok; ?>" required>
-                </div>
-
-                <!-- Lokasi Rak -->
-                <div class="form-group mb-3">
-                    <label>Lokasi Rak</label>
-                    <input type="text" name="lokasi_rak" class="form-control" 
-                           value="<?= $buku->lokasi_rak; ?>" required>
-                </div>
-
                 <!-- Button -->
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a href="<?= site_url('buku'); ?>" class="btn btn-secondary">Kembali</a>
+                <button type="submit" class="btn btn-primary">
+                    Update
+                </button>
+
+                <a href="<?= site_url('anggota'); ?>" 
+                   class="btn btn-secondary">
+                    Kembali
+                </a>
 
             </form>
 
