@@ -13,7 +13,7 @@ class peminjaman extends CI_Controller{
     }
     public function index()
     {
-        $data['data']=$this->Peminjaman_model->get_all();
+        $data['data']= $this->Peminjaman_model->get_all();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -24,8 +24,8 @@ class peminjaman extends CI_Controller{
 
     public function tambah()
     {
-        $data['anggota']=$this->db->get('anggota')->result();
-        $data['buku']=$this->db->get('buku')->result();
+        $data['anggota']= $this->db->get('anggota')->result();
+        $data['buku']= $this->db->get('buku')->result();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -50,9 +50,26 @@ class peminjaman extends CI_Controller{
         redirect('peminjaman');
     }
 
-    public function kembali()
+    public function kembali($id)
     {
         $this->Peminjaman_model->pengembalian($id);
         redirect('peminjaman');
+    }
+
+    public function cetak_peminjaman()
+    {
+        $bulan = $this->input->get('bulan');
+
+        $this->db->select('peminjaman.*, anggota.nama');
+        $this->db->from('peminjaman');
+        $this->db->join('anggota', 'anggota.id = peminjaman.anggota_id');
+
+        if($bulan){
+            $this->db->where('DATE_FORMAT(tanggal_pinjam, "%Y-%m")=', $bulan);
+        }
+        $data['data']=$this->db->get()->result();
+        $data['bulan']=$bulan;
+        
+        $this->load->view('laporan/cetak_pinjam', $data);
     }
 }
